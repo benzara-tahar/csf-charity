@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>CSF.Charity.Domain</RootNamespace>
+    <AssemblyName>CSF.Charity.Domain</AssemblyName>
+  </PropertyGroup>
+
+</Project>
