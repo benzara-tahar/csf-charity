@@ -1,29 +1,31 @@
 ﻿using CSF.Charity.Application.Common.Interfaces;
+using CSF.Charity.Application.TodoItems.Repositories;
 using CSF.Charity.Domain.Entities;
 using CSF.Charity.Domain.Events;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CSF.Charity.Application.TodoItems.Commands.CreateTodoItem
 {
-    public class CreateTodoItemCommand : IRequest<int>
+    public class CreateTodoItemCommand : IRequest<Guid>
     {
         public int ListId { get; set; }
 
         public string Title { get; set; }
     }
 
-    public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, int>
+    public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Guid>
     {
-        private readonly IApplicationDbContext _context;
+        private readonly ITodoItemRepository _repository;
 
-        public CreateTodoItemCommandHandler(IApplicationDbContext context)
+        public CreateTodoItemCommandHandler(ITodoItemRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public async Task<int> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
         {
             var entity = new TodoItem
             {
@@ -33,12 +35,10 @@ namespace CSF.Charity.Application.TodoItems.Commands.CreateTodoItem
             };
 
             entity.DomainEvents.Add(new TodoItemCreatedEvent(entity));
-
-            _context.TodoItems.Add(entity);
-
-            await _context.SaveChangesAsync(cancellationToken);
-
-            return entity.Id;
+            // TODO! support cancelation token in the repository
+            entity = _repository.Add(entity);
+            return await Task.FromResult(entity.Id);
+            
         }
     }
 }

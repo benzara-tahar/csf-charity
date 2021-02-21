@@ -6,10 +6,8 @@ using System.Collections.Generic;
 
 namespace CSF.Charity.Domain.Entities
 {
-    public class TodoItem : AuditableEntity, IHasDomainEvent
+    public class TodoItem : AuditableEntity<Guid>, IHasDomainEvent
     {
-        public int Id { get; set; }
-
         public TodoList List { get; set; }
 
         public int ListId { get; set; }

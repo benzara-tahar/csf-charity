@@ -1,12 +1,12 @@
 ﻿using CSF.Charity.Domain.Common;
 using CSF.Charity.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 
 namespace CSF.Charity.Domain.Entities
 {
-    public class TodoList : AuditableEntity
+    public class TodoList : AuditableEntity<Guid>
     {
-        public int Id { get; set; }
 
         public string Title { get; set; }
 

@@ -1,8 +1,10 @@
 ﻿using CSF.Charity.Application.Common.Exceptions;
 using CSF.Charity.Application.Common.Interfaces;
+using CSF.Charity.Application.TodoItems.Repositories;
 using CSF.Charity.Domain.Entities;
 using CSF.Charity.Domain.Enums;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,7 +12,7 @@ namespace CSF.Charity.Application.TodoItems.Commands.UpdateTodoItemDetail
 {
     public class UpdateTodoItemDetailCommand : IRequest
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public int ListId { get; set; }
 
@@ -21,16 +23,15 @@ namespace CSF.Charity.Application.TodoItems.Commands.UpdateTodoItemDetail
 
     public class UpdateTodoItemDetailCommandHandler : IRequestHandler<UpdateTodoItemDetailCommand>
     {
-        private readonly IApplicationDbContext _context;
-
-        public UpdateTodoItemDetailCommandHandler(IApplicationDbContext context)
+        private readonly ITodoItemRepository _repository;
+        public UpdateTodoItemDetailCommandHandler(ITodoItemRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<Unit> Handle(UpdateTodoItemDetailCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.TodoItems.FindAsync(request.Id);
+            var entity =  _repository.GetById(request.Id);
 
             if (entity == null)
             {
@@ -41,9 +42,9 @@ namespace CSF.Charity.Application.TodoItems.Commands.UpdateTodoItemDetail
             entity.Priority = request.Priority;
             entity.Note = request.Note;
 
-            await _context.SaveChangesAsync(cancellationToken);
+            _repository.Update(entity/*cancellationToken*/);
 
-            return Unit.Value;
+            return await Task.FromResult(Unit.Value);
         }
     }
 }

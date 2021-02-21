@@ -1,14 +1,12 @@
 using CSF.Charity.Application;
 using CSF.Charity.Application.Common.Interfaces;
 using CSF.Charity.Infrastructure;
-using CSF.Charity.Infrastructure.Persistence;
 using CSF.Charity.Api.Filters;
 using CSF.Charity.Api.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -39,8 +37,8 @@ namespace CSF.Charity.Api
 
             services.AddHttpContextAccessor();
 
-            services.AddHealthChecks()
-                .AddDbContextCheck<ApplicationDbContext>();
+            services.AddHealthChecks();
+                //.AddDbContextCheck<ApplicationDbContext>();
 
             services.AddControllersWithViews(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>())
@@ -106,7 +104,7 @@ namespace CSF.Charity.Api
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseIdentityServer();
+            //app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
@@ -116,19 +114,7 @@ namespace CSF.Charity.Api
                 endpoints.MapRazorPages();
             });
 
-            //app.UseSpa(spa =>
-            //{
-            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            //    // see https://go.microsoft.com/fwlink/?linkid=864501
-
-            //    spa.Options.SourcePath = "ClientApp";
-
-            //    if (env.IsDevelopment())
-            //    {
-            //        //spa.UseAngularCliServer(npmScript: "start");
-            //        spa.UseProxyToSpaDevelopmentServer(Configuration["SpaBaseUrl"] ?? "http://localhost:4200");
-            //    }
-            //});
+   
         }
     }
 }

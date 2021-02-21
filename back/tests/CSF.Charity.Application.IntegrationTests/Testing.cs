@@ -71,9 +71,9 @@ public class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        //var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
 
-        context.Database.Migrate();
+        //context.Database.Migrate();
     }
 
     public static async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)
@@ -140,9 +140,10 @@ public class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        //var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
 
-        return await context.FindAsync<TEntity>(keyValues);
+        //return await context.FindAsync<TEntity>(keyValues);
+        return null;
     }
 
     public static async Task AddAsync<TEntity>(TEntity entity)
@@ -150,20 +151,21 @@ public class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        //var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
 
-        context.Add(entity);
+        //context.Add(entity);
 
-        await context.SaveChangesAsync();
+        //await context.SaveChangesAsync();
     }
 
     public static async Task<int> CountAsync<TEntity>() where TEntity : class
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        //var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
 
-        return await context.Set<TEntity>().CountAsync();
+        //return await context.Set<TEntity>().CountAsync();
+        return 0;
     }
 
     [OneTimeTearDown]

@@ -1,7 +1,9 @@
 ﻿using CSF.Charity.Application.Common.Exceptions;
 using CSF.Charity.Application.Common.Interfaces;
+using CSF.Charity.Application.TodoItems.Repositories;
 using CSF.Charity.Domain.Entities;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,7 +11,7 @@ namespace CSF.Charity.Application.TodoItems.Commands.UpdateTodoItem
 {
     public class UpdateTodoItemCommand : IRequest
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; }
 
@@ -18,16 +20,16 @@ namespace CSF.Charity.Application.TodoItems.Commands.UpdateTodoItem
 
     public class UpdateTodoItemCommandHandler : IRequestHandler<UpdateTodoItemCommand>
     {
-        private readonly IApplicationDbContext _context;
+        private readonly ITodoItemRepository _repository;
 
-        public UpdateTodoItemCommandHandler(IApplicationDbContext context)
+        public UpdateTodoItemCommandHandler(ITodoItemRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<Unit> Handle(UpdateTodoItemCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.TodoItems.FindAsync(request.Id);
+            var entity =  _repository.GetById(request.Id);
 
             if (entity == null)
             {
@@ -37,9 +39,10 @@ namespace CSF.Charity.Application.TodoItems.Commands.UpdateTodoItem
             entity.Title = request.Title;
             entity.Done = request.Done;
 
-            await _context.SaveChangesAsync(cancellationToken);
+            _repository.Update(entity);
+            
 
-            return Unit.Value;
+            return await Task.FromResult( Unit.Value);
         }
     }
 }

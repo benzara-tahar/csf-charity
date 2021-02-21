@@ -1,7 +1,9 @@
 ﻿using CSF.Charity.Application.Common.Exceptions;
 using CSF.Charity.Application.Common.Interfaces;
+using CSF.Charity.Application.TodoItems.Repositories;
 using CSF.Charity.Domain.Entities;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,32 +11,30 @@ namespace CSF.Charity.Application.TodoItems.Commands.DeleteTodoItem
 {
     public class DeleteTodoItemCommand : IRequest
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 
     public class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItemCommand>
     {
-        private readonly IApplicationDbContext _context;
+        private readonly ITodoItemRepository _repository;
 
-        public DeleteTodoItemCommandHandler(IApplicationDbContext context)
+        public DeleteTodoItemCommandHandler(ITodoItemRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<Unit> Handle(DeleteTodoItemCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.TodoItems.FindAsync(request.Id);
+            var entity = _repository.GetById(request.Id);
 
             if (entity == null)
             {
                 throw new NotFoundException(nameof(TodoItem), request.Id);
             }
 
-            _context.TodoItems.Remove(entity);
+            _repository.Delete(entity);
 
-            await _context.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
+            return await Task.FromResult(Unit.Value);
         }
     }
 }

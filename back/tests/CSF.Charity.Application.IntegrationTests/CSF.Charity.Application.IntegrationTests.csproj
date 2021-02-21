@@ -34,4 +34,8 @@
     <ProjectReference Include="..\..\src\CSF.Charity.Api\CSF.Charity.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TodoItems\" />
+  </ItemGroup>
+
 </Project>

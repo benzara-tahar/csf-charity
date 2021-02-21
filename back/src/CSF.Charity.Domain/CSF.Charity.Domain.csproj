@@ -6,4 +6,7 @@
     <AssemblyName>CSF.Charity.Domain</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+  </ItemGroup>
+
 </Project>
