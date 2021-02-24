@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CSF.Charity.Application\CSF.Charity.Application.csproj" />
-    <ProjectReference Include="..\..\src\CSF.Charity.Infrastructure\CSF.Charity.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Application\CSF.Charity.Application\CSF.Charity.Application.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\CSF.Charity.Infrastructure\CSF.Charity.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

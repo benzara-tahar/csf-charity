@@ -31,11 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CSF.Charity.Api\CSF.Charity.Api.csproj" />
+    <Folder Include="TodoItems\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TodoItems\" />
+    <ProjectReference Include="..\..\src\Api\CSF.Charity.Api\CSF.Charity.Api.csproj" />
+    <ProjectReference Include="..\..\src\Application\CSF.Charity.Application\CSF.Charity.Application.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\CSF.Charity.Infrastructure\CSF.Charity.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

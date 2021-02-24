@@ -1,7 +1,6 @@
-﻿using CSF.Charity.Application.Common.Interfaces;
+﻿using CSF.Charity.Api;
+using CSF.Charity.Application.Services;
 using CSF.Charity.Infrastructure.Identity;
-using CSF.Charity.Infrastructure.Persistence;
-using CSF.Charity.Api;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "Hnv5f7zHnjLvhJ3JkE4EU5t+GAZowhT2xAXq5B6VKCnDRqbKXCCAt58VnzK8qim0Yhwa3r3MS2RD3/AmZp9BvQ==",
+  "success": true,
+  "projectFilePath": "D:\\_____CODE_CAN____\\github\\csf-charity\\CSF.Charity.Domain.Core\\CSF.Charity.Domain.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\fluentvalidation\\8.6.2\\fluentvalidation.8.6.2.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mediatr\\8.0.1\\mediatr.8.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\netdevpack\\1.1.0\\netdevpack.1.1.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.componentmodel.annotations\\4.4.1\\system.componentmodel.annotations.4.4.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>CSF.Charity.Domain</RootNamespace>
+    <AssemblyName>CSF.Charity.Domain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSF.Charity.Domain.Core\CSF.Charity.Domain.Core.csproj" />
+  </ItemGroup>
+
+</Project>

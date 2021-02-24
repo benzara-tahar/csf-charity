@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <PackageReference Include="mongocsharpdriver" Version="2.11.6" />
+    <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\CSF.Charity.Application\CSF.Charity.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\CSF.Charity.Domain\CSF.Charity.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>
