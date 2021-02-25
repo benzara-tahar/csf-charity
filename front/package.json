@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
-  },"private": true,
+  },
+  "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.3",
     "@angular/common": "~11.2.3",
@@ -24,6 +25,7 @@
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.4",
     "clipboard": "^2.0.6",
+    "ngx-clipboard": "^14.0.1",
     "nouislider": "^14.6.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
