@@ -131,7 +131,8 @@ namespace CSF.Charity.Api.Filters
             {
                 Status = StatusCodes.Status500InternalServerError,
                 Title = "An error occurred while processing your request.",
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",
+                Detail = context.Exception.ToString() // TODO remove on production
             };
 
             context.Result = new ObjectResult(details)

@@ -46,6 +46,8 @@ namespace CSF.Charity.Infrastructure
             services.AddScoped<IAssociationRepository, AssociationRepository>();
             services.AddScoped<IStateRepository, StateRepository>();
             services.AddScoped<ITownshipRepository, TownshipRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IAllotmentRepository, AllotmentRepository>();
 
             // events
             services.AddScoped<IDomainEventService, DomainEventService>();
@@ -80,7 +82,8 @@ namespace CSF.Charity.Infrastructure
             //});
 
             // services
-            services.AddTransient<IDateTime, DateTimeService>();
+            services.AddTransient<IPhotoService, PhotoService>();
+            services.AddTransient<IDateTime, MachineDateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 

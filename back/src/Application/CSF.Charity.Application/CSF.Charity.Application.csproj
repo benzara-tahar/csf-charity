@@ -12,12 +12,15 @@
     <PackageReference Include="FluentValidation" Version="9.3.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="mongocsharpdriver" Version="2.11.6" />
     <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Allotments\Queries\" />
+    <Folder Include="Features\Customers\Queries\" />
     <Folder Include="Features\Townships\Queries\" />
     <Folder Include="Features\States\Queries\" />
     <Folder Include="Features\Associations\Queries\" />

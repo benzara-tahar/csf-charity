@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CSF.Charity.Domain.Entities
 {
-    public class TodoList : AuditableEntity<Guid>
+    public class TodoList : Entity<Guid>
     {
 
         public string Title { get; set; }

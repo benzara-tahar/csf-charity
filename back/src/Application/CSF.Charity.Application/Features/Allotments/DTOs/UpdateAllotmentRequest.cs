@@ -1,16 +1,15 @@
-﻿using CSF.Charity.Domain.Core.Models;
-using System;
+﻿using System;
 
-namespace CSF.Charity.Domain.Entities
+namespace CSF.Charity.Application.Features.Allotments.DTOs
 {
-    public class Allotment : Entity<Guid>
+    public class UpdateAllotmentRequest
     {
+        public Guid Id { get; set; }
         public Guid AssociationId { get; set; }
         public Guid CustomerId { get; set; }
 
-        public DateTimeOffset Date{ get; set; }
+        public DateTimeOffset Date { get; set; }
         public string DonationDetails { get; set; }
         public string Notes { get; set; }
-
     }
 }

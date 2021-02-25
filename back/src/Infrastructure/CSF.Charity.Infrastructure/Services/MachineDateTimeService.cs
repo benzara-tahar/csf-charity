@@ -3,7 +3,7 @@ using System;
 
 namespace CSF.Charity.Infrastructure.Services
 {
-    public class DateTimeService : IDateTime
+    public class MachineDateTimeService : IDateTime
     {
         public DateTime Now => DateTime.Now;
     }
