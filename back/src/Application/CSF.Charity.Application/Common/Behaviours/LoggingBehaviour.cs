@@ -10,9 +10,9 @@ namespace CSF.Charity.Application.Common.Behaviours
     {
         private readonly ILogger _logger;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IIdentityService _identityService;
+        private readonly IAccountService _identityService;
 
-        public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IIdentityService identityService)
+        public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IAccountService identityService)
         {
             _logger = logger;
             _currentUserService = currentUserService;

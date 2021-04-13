@@ -24,6 +24,8 @@
     <Folder Include="Features\Townships\Queries\" />
     <Folder Include="Features\States\Queries\" />
     <Folder Include="Features\Associations\Queries\" />
+    <Folder Include="Features\Users\Commands\" />
+    <Folder Include="Features\Users\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

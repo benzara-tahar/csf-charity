@@ -1,6 +1,4 @@
-﻿using CSF.Charity.Application.TodoLists.Queries.ExportTodos;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace CSF.Charity.Application.Services
 {

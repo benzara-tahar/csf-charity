@@ -1,0 +1,21 @@
+<sv-container [col]="1">
+  <sv-title>{{ record?.name }} [{{ record?.deviceId }} ] </sv-title>
+  <sv label="{{ 'webhook.name' | translate }}">{{ record?.name }}</sv>
+  <sv label="{{ 'webhook.deviceId' | translate }}">{{ record?.deviceId }}</sv>
+  <sv label="{{ 'webhook.date' | translate }}">{{ record?.enqueuedAtUtc | date }}</sv>
+  <sv label="{{ 'webhook.lastDeliveryAttempt' | translate }}">{{ record?.lastDeliverAttempt | date: 'medium' }}</sv>
+  <sv label="{{ 'webhook.subscription' | translate }}">{{ record?.subscriptionName }}</sv>
+  <sv label="{{ 'webhook.url' | translate }}">{{ record?.url }}</sv>
+  <sv label="{{ 'webhook.status' | translate }}"> {{ 'webhook.status.' + record.status | translate }} </sv>
+  <sv label="{{ 'webhook.response' | translate }}"> {{ record.response }} </sv>
+  <sv label="{{ 'webhook.payload' | translate }} ">
+    <pre class="payload">
+      {{ payload | json }}
+    </pre>
+  </sv>
+</sv-container>
+<div class="drawer-footer">
+  <button nz-button [nzType]="'primary'" (click)="ok()">
+    {{ 'ok' | translate }}
+  </button>
+</div>

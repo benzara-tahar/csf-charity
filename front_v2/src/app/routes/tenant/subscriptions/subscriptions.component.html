@@ -1,0 +1,16 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <button (click)="showNewModal()" nz-button
+      nzType="primary">{{ 'subscriptions.new-subscription' | translate }}</button>
+  </ng-template>
+</page-header>
+<nz-card>
+  <st #st [data]="data" [columns]="columns">
+    <ng-template st-row="isActive" let-column let-item>
+      <i nz-icon nzType="poweroff" nzTheme="outline" [ngStyle]="{'color': column.isActive ? 'green': 'red'}"></i>
+    </ng-template>
+    <ng-template st-row="preferredDistanceUnit" let-column let-item>
+      {{ 'subscriptions.subscription.distanceUnit.'+ DistanceUnits[column.preferredDistanceUnit].toLowerCase() | translate }}
+    </ng-template>
+  </st>
+</nz-card>

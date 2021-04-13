@@ -1,0 +1,18 @@
+<div class="container">
+  <header-i18n showLangText="false" class="langs"></header-i18n>
+  <div class="wrap">
+    <div class="top">
+      <div class="head">
+        <img class="logo" src="./assets/kiot.png" />
+        <span class="title">{{'app.login.title' | translate}}</span>
+      </div>
+      <div class="desc">{{'app.login.description' | translate}}</div>
+    </div>
+    <router-outlet></router-outlet>
+    <global-footer [links]="links">
+      Copyright
+      <i class="anticon anticon-copyright"></i> 2020
+      <a href="//github.com/cipchk" target="_blank">BENZARA</a>
+    </global-footer>
+  </div>
+</div>

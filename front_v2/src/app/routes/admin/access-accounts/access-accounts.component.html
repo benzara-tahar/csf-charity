@@ -1,0 +1,14 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <button (click)="showNewModal()" nz-button nzType="primary">{{ 'access-accounts.new-account' | translate }}</button>
+  </ng-template>
+</page-header>
+<nz-card>
+  <st #st [data]="data" [columns]="columns">
+    <ng-template st-row="validTo" let-column let-item>
+      <nz-tag [nzColor]="column.validTo ? 'blue' : 'green'">
+        {{ column.validTo ? (column.validTo | date : 'dd/MM/yyyy') : ('access-accounts.unlimited-access' | translate )}}
+      </nz-tag>
+    </ng-template>
+  </st>
+</nz-card>

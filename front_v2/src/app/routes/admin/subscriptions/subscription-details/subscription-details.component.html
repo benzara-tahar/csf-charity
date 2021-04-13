@@ -1,0 +1,63 @@
+<div class="drawer-title">
+  <h2>
+    {{ 'subscriptions.subscription-details' | translate }}
+  </h2>
+</div>
+<div class="drawer-body">
+  <nz-list style="width: 100%">
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription-name' | translate }}</h4>
+        {{ record?.name }}
+      </nz-col>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription-webhook-uri' | translate }}</h4>
+        {{ record?.webhookUri }}
+      </nz-col>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription.is-active' | translate }}</h4>
+        <i nz-icon nzType="poweroff" nzTheme="outline" [ngStyle]="{ color: record?.isActive ? 'green' : 'red' }"></i>
+      </nz-col>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription.secret' | translate }}</h4>
+        {{ record?.secret }}
+      </nz-col>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription.batchInterval' | translate }}</h4>
+        {{ record?.batchInterval }}
+      </nz-col>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription.maxAttemptBeforeRejection' | translate }}</h4>
+        {{ record?.maxAttemptBeforeRejection }}
+      </nz-col>
+    </nz-list-item>
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription.distanceUnit' | translate }}</h4>
+        {{ 'subscriptions.subscription.distanceUnit.' + DistanceUnits[record?.preferredDistanceUnit].toLowerCase() | translate }}
+      </nz-col>
+    </nz-list-item>
+
+    <nz-list-item>
+      <nz-col>
+        <h4>{{ 'subscriptions.subscription.webhooks' | translate }}</h4>
+        <nz-tag class="mt-xs mr-sm" *ngFor="let t of record?.webhooks"> {{ t }}</nz-tag>
+      </nz-col>
+    </nz-list-item>
+  </nz-list>
+</div>
+<div class="drawer-footer">
+  <button nz-button [nzType]="'primary'" (click)="closeDrawer()">
+    {{ 'common.close' | translate }}
+  </button>
+</div>

@@ -1,0 +1,12 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <button (click)="showNewModal()" nz-button nzType="primary">{{ 'tenants.new-tenant' | translate }}</button>
+  </ng-template>
+</page-header>
+<nz-card>
+  <st #st [data]="data" [columns]="columns">
+    <ng-template st-row="custom-providers" let-item let-index="index">
+      <nz-tag *ngFor="let t of item?.supportedIoTProviders"> {{ t?.name }}</nz-tag>
+    </ng-template>
+  </st>
+</nz-card>

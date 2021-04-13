@@ -1,15 +1,10 @@
-﻿using Application.Enums;
-using Infrastructure.Identity.Models;
+﻿using CSF.Charity.Domain.Enums;
+using CSF.Charity.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using Org.BouncyCastle.Crypto.Prng.Drbg;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Identity.Seeds
+namespace CSF.Charity.Infrastructure.Identity.Seeds
 {
     public static class DefaultSuperAdmin
     {
@@ -18,10 +13,10 @@ namespace Infrastructure.Identity.Seeds
             //Seed Default User
             var defaultUser = new ApplicationUser
             {
-                UserName = "superadmin",
-                Email = "superadmin@gmail.com",
-                FirstName = "Mukesh",
-                LastName = "Murugan",
+                UserName = "sa",
+                Email = "sa@gmail.com",
+                FirstName = "Benzara",
+                LastName = "Tahar",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true
             };
@@ -31,10 +26,8 @@ namespace Infrastructure.Identity.Seeds
                 if (user == null)
                 {
                     await userManager.CreateAsync(defaultUser, "123Pa$$word!");
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Basic.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Moderator.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin.ToString());
+                    await userManager.AddToRoleAsync(defaultUser, BuiltInRoles.SuperAdmin.ToString());
+                 
                 }
 
             }

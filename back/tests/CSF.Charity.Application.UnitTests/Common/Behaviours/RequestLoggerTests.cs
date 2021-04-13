@@ -13,7 +13,7 @@ namespace CSF.Charity.Application.UnitTests.Common.Behaviours
     {
         private readonly Mock<ILogger<CreateTodoItemCommand>> _logger;
         private readonly Mock<ICurrentUserService> _currentUserService;
-        private readonly Mock<IIdentityService> _identityService;
+        private readonly Mock<IAccountService> _identityService;
 
 
         public RequestLoggerTests()
@@ -22,7 +22,7 @@ namespace CSF.Charity.Application.UnitTests.Common.Behaviours
 
             _currentUserService = new Mock<ICurrentUserService>();
 
-            _identityService = new Mock<IIdentityService>();
+            _identityService = new Mock<IAccountService>();
         }
 
         [Test]

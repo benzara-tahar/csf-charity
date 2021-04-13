@@ -1,0 +1,25 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <div nz-row>
+      <h4>{{ 'subscriptions.subscription.filter.label' | translate }}</h4>
+      <nz-select [nzPlaceHolder]="'access-accounts.permissions' | translate" [(ngModel)]="selectedTenant" nzSize="large"
+        (ngModelChange)="getSubscriptions()">
+        <nz-option [nzLabel]="'subscriptions.subscription.filter.all' | translate" [nzValue]="'all'">
+        </nz-option>
+        <nz-option *ngFor="let tenant of tenants" [nzLabel]="tenant.name" [nzValue]="tenant.id">
+        </nz-option>
+      </nz-select>
+    </div>
+
+  </ng-template>
+</page-header>
+<nz-card>
+  <st #st [data]="data" [columns]="columns">
+    <ng-template st-row="isActive" let-column let-item>
+      <i nz-icon nzType="poweroff" nzTheme="outline" [ngStyle]="{'color': column.isActive ? 'green': 'red'}"></i>
+    </ng-template>
+    <ng-template st-row="preferredDistanceUnit" let-column let-item>
+      {{ 'subscriptions.subscription.distanceUnit.'+ DistanceUnits[column.preferredDistanceUnit].toLowerCase() | translate }}
+    </ng-template>
+  </st>
+</nz-card>

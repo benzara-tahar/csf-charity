@@ -1,0 +1,135 @@
+<div class="modal-header">
+  <div class="modal-title">
+    {{ (mode == 'edit' ? 'subscriptions.edit-subscription' : 'subscriptions.new-subscription') | translate }}</div>
+</div>
+<!-- <nz-spin *ngIf="!i" class="modal-spin"></nz-spin> -->
+<form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form" nzLayout="vertical">
+  <!-- Name -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'subscriptions.subscription-name' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large">
+        <input nz-input formControlName="name" [placeholder]="'subscriptions.subscription-name' | translate" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- Webhook URI -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'subscriptions.subscription-webhook-uri' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="webhookUriErrorTip">
+      <nz-input-group nzSize="large">
+        <input nz-input formControlName="webhookUri"
+          [placeholder]="'subscriptions.subscription-webhook-uri' | translate" />
+      </nz-input-group>
+      <ng-template #webhookUriErrorTip let-i>
+        <ng-container *ngIf="i.errors?.required">{{ 'validation.required' | translate }}</ng-container>
+        <ng-container *ngIf="i.errors?.pattern">{{ 'validation.webhookuri.wrong-format' | translate }}</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- Is Active -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <!-- <nz-form-label> -->
+    <!-- <h4>{{ 'subscriptions.subscription.is-active' | translate }}</h4> -->
+    <!-- </nz-form-label> -->
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large">
+        <nz-form-label class="h4 mr-xs">{{ 'subscriptions.subscription.is-active' | translate }}</nz-form-label><label
+          nz-checkbox formControlName="isActive"></label>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- Secret -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'subscriptions.subscription.secret' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large" [nzAddOnAfter]="suffixIconButton">
+        <input nz-input formControlName="secret" [placeholder]="'subscriptions.subscription.secret' | translate" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch type="button" (click)="generateRandomSecret()"><i nz-icon
+            nzType="reload"></i></button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- Batch Interval -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'subscriptions.subscription.batchInterval' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="batchIntervalErrorTip">
+      <nz-input-group nzSize="large">
+        <input type="number" nz-input formControlName="batchInterval"
+          [placeholder]="'subscriptions.subscription.batchInterval' | translate" />
+      </nz-input-group>
+      <ng-template #batchIntervalErrorTip let-i>
+        <ng-container *ngIf="i.errors?.required">{{ 'validation.required' | translate }}</ng-container>
+        <ng-container *ngIf="i.errors?.min">{{ 'validation.batchInterval.min' | translate }}</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- Max Attempt Before Rejection -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'subscriptions.subscription.maxAttemptBeforeRejection' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large">
+        <input type="number" nz-input formControlName="maxAttemptBeforeRejection"
+          [placeholder]="'subscriptions.subscription.maxAttemptBeforeRejection' | translate" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- Preferred Distance Unit -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'subscriptions.subscription.distanceUnit' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large">
+        <nz-select [nzPlaceHolder]="'subscriptions.subscription.distanceUnit' | translate"
+          formControlName="preferredDistanceUnit" nzSize="large">
+          <nz-option *ngFor="let distanceUnit of distanceUnits"
+            [nzLabel]="'subscriptions.subscription.distanceUnit.'+ distanceUnit.name | translate"
+            [nzValue]="distanceUnit.value"> </nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- Webhooks -->
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'subscriptions.subscription.webhooks' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large">
+        <nz-select nzMode="multiple" [nzPlaceHolder]="'subscriptions.subscription.webhooks' | translate"
+          formControlName="webhooks" nzSize="large">
+          <nz-option *ngFor="let webhookDefinition of webhookDefinitions" [nzLabel]="webhookDefinition.displayName"
+            [nzValue]="webhookDefinition.name"> </nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">{{ 'common.close' | translate }}</button>
+  <button nz-button type="submit" nzType="primary" (click)="submit()" [nzLoading]="http.loading">
+    {{ (mode == 'edit' ? 'common.edit' : 'common.create') | translate }}
+  </button>
+</div>

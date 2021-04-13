@@ -1,10 +1,10 @@
 ﻿using CSF.Charity.Api;
 using CSF.Charity.Application.Services;
+using CSF.Charity.Domain.Identity;
 using CSF.Charity.Infrastructure.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
@@ -118,7 +118,7 @@ public class Testing
 
         if (result.Succeeded)
         {
-            _currentUserId = user.Id;
+            _currentUserId = user.Id.ToString();
 
             return _currentUserId;
         }

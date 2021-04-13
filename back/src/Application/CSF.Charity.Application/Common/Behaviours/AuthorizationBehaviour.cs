@@ -13,11 +13,11 @@ namespace CSF.Charity.Application.Common.Behaviours
     public class AuthorizationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly ICurrentUserService _currentUserService;
-        private readonly IIdentityService _identityService;
+        private readonly IAccountService _identityService;
 
         public AuthorizationBehaviour(
             ICurrentUserService currentUserService,
-            IIdentityService identityService)
+            IAccountService identityService)
         {
             _currentUserService = currentUserService;
             _identityService = identityService;

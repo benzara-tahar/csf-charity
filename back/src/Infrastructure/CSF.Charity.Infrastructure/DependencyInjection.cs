@@ -1,13 +1,13 @@
 ﻿using CSF.Charity.Application.Common.Abstractions;
 using CSF.Charity.Application.Repositories;
 using CSF.Charity.Application.Services;
+using CSF.Charity.Domain.Identity;
 using CSF.Charity.Infrastructure.Files;
 using CSF.Charity.Infrastructure.Identity;
 using CSF.Charity.Infrastructure.Persistance.Mongo;
 using CSF.Charity.Infrastructure.Persistance.Mongo.Repositories;
 using CSF.Charity.Infrastructure.Persistence.Mongo.Mappings;
 using CSF.Charity.Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +25,8 @@ namespace CSF.Charity.Infrastructure
 
             MongoDbClassMappings.Configure();
             MongoDbClassMappings.MapDomainEntities();
-            var connectionString = configuration.GetSection("Database").GetValue<string>("ConnectionString");
-            var databaseName = configuration.GetSection("Database").GetValue<string>("DatabaseName");
+            var connectionString = configuration["Database:ConnectionString"];
+            var databaseName = configuration["Database:DatabaseName"];
 
             services.AddSingleton<IMongoDatabase>(_ =>
             {
@@ -53,48 +53,16 @@ namespace CSF.Charity.Infrastructure
             services.AddScoped<IDomainEventService, DomainEventService>();
 
             // identity
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-             .AddMongoDbStores<ApplicationUser, ApplicationRole, string>(
-                 connectionString,
-                 databaseName
-             ).AddDefaultTokenProviders();
-
-            //var jwtSection = configuration.GetSection(nameof(JwtBearerTokenSettings));
-            //services.Configure<JwtBearerTokenSettings>(jwtSection);
-            //var jwtBearerTokenSettings = jwtSection.Get<JwtBearerTokenSettings>();
-            //var key = Encoding.ASCII.GetBytes(jwtBearerTokenSettings.SecretKey);
-
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            //.AddJwtBearer(options =>
-            //{
-            //    options.RequireHttpsMetadata = false;
-            //    options.SaveToken = true;
-            //    options.TokenValidationParameters = new TokenValidationParameters()
-            //    {
-            //        ValidIssuer = jwtBearerTokenSettings.Issuer,
-            //        ValidAudience = jwtBearerTokenSettings.Audience,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //    };
-            //});
+            services.AddIdentityServerExtension(configuration);
 
             // services
             services.AddTransient<IPhotoService, PhotoService>();
             services.AddTransient<IDateTime, MachineDateTimeService>();
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
-            services.AddRazorPages();
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            //services.AddRazorPages();
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator"));
-            });
 
             return services;
         }

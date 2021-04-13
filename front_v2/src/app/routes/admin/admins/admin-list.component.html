@@ -1,0 +1,12 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <button (click)="showNewModal()" nz-button nzType="primary">{{ 'admins.new-admin' | translate }}</button>
+  </ng-template>
+</page-header>
+<nz-card>
+  <st #st [data]="data" [columns]="columns">
+    <ng-template st-row="role" let-column let-item>
+      {{ column.role.name }}
+    </ng-template>
+  </st>
+</nz-card>

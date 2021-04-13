@@ -1,0 +1,44 @@
+<page-header>
+  <!-- [action]="phActionTpl"  <ng-template #phActionTpl>
+    <button (click)="showNewModal()" nz-button nzType="primary">{{ 'admins.new-admin' | translate }}</button>
+  </ng-template> -->
+</page-header>
+<nz-card>
+  <st #st [data]="data" [columns]="columns">
+    <ng-template st-row="custom-name" let-item let-index="index">
+      <span [ngSwitch]="item.name">
+        <nz-tag [nzColor]="'red'" *ngSwitchCase="'device.uninstalled'">{{ item.name }} </nz-tag>
+        <nz-tag [nzColor]="'#108ee9'" *ngSwitchCase="'device.telemetry'">{{ item.name }} </nz-tag>
+        <nz-tag [nzColor]="'#87d068'" *ngSwitchCase="'device.installed'">{{ item.name }} </nz-tag>
+        <nz-tag [nzColor]="'green'" *ngSwitchCase="'device.online'">{{ item.name }} </nz-tag>
+        <nz-tag [nzColor]="'#f50'" *ngSwitchCase="'device.offline'">{{ item.name }} </nz-tag>
+        <nz-tag [nzColor]="'#87d068'" *ngSwitchCase="'device.connected'">{{ item.name }} </nz-tag>
+        <nz-tag [nzColor]="'volcano'" *ngSwitchCase="'device.disconnected'">{{ item.name }} </nz-tag>
+        <nz-tag *ngSwitchDefault>{{ item.name }} </nz-tag>
+      </span>
+    </ng-template>
+    <ng-template st-row="custom-url" let-item let-index="index">
+      <ellipsis title="{{ item.url }}" length="60">{{ item.url }}</ellipsis>
+    </ng-template>
+    <ng-template st-row="custom-status" let-item let-index="index">
+      <span [ngSwitch]="item.status">
+        <nz-tag *ngSwitchCase="'Pending'" nzColor="processing">
+          <i nz-icon nzType="sync" nzSpin></i>
+          <span>{{ 'webhook.status.Pending' | translate }}</span>
+        </nz-tag>
+        <nz-tag *ngSwitchCase="'DeliverySucceeded'" nzColor="success">
+          <i nz-icon nzType="check-circle"></i>
+          <span>{{ 'webhook.status.DeliverySucceeded' | translate }}</span>
+        </nz-tag>
+        <nz-tag *ngSwitchCase="'Rejected'" nzColor="error">
+          <i nz-icon nzType="close-circle"></i>
+          <span>{{ 'webhook.status.Rejected' | translate }}</span>
+        </nz-tag>
+        <nz-tag *ngSwitchCase="'DeliveryFailed'" nzColor="warning">
+          <i nz-icon nzType="exclamation-circle"></i>
+          <span>{{ 'webhook.status.DeliveryFailed' | translate }}</span>
+        </nz-tag>
+      </span>
+    </ng-template>
+  </st>
+</nz-card>

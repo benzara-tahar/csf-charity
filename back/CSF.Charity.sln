@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSF.Charity.Domain.UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSF.Charity.Application.IntegrationTests", "tests\CSF.Charity.Application.IntegrationTests\CSF.Charity.Application.IntegrationTests.csproj", "{277029AF-D9E1-4B75-9F11-48FEA7345AD7}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6BD2EC46-FA8F-44F3-AF33-903BBB347116}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSF.Charity.Domain.Core", "src\Domain\CSF.Charity.Domain.Core\CSF.Charity.Domain.Core.csproj", "{F1F7E02A-662A-4E8D-A125-1D7D045AC4A9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSF.Charity.Infrastructure.Persistance.SqlServer", "src\Infrastructure\CSF.Charity.Infrastructure.Persistance.SqlServer\CSF.Charity.Infrastructure.Persistance.SqlServer.csproj", "{54E379C7-5306-4CFC-8780-2F2DD505FEF1}"
@@ -37,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSF.Charity.Infrastructure.Persistance.Mongo", "src\Infrastructure\CSF.Charity.Infrastructure.Persistance.Mongo\CSF.Charity.Infrastructure.Persistance.Mongo.csproj", "{A733E3C3-9F8A-4FA0-9EC0-3E4DCBAEF098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.Charity.Infrastructure.Identity", "src\Infrastructure\CSF.Charity.Infrastructure.Identity\CSF.Charity.Infrastructure.Identity.csproj", "{802FDD4D-276B-436C-9D9F-75DA57BEAB42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSF.Charity.Infrastructure.Identity", "src\Infrastructure\CSF.Charity.Infrastructure.Identity\CSF.Charity.Infrastructure.Identity.csproj", "{802FDD4D-276B-436C-9D9F-75DA57BEAB42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,10 +71,6 @@ Global
 		{277029AF-D9E1-4B75-9F11-48FEA7345AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{277029AF-D9E1-4B75-9F11-48FEA7345AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{277029AF-D9E1-4B75-9F11-48FEA7345AD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BD2EC46-FA8F-44F3-AF33-903BBB347116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BD2EC46-FA8F-44F3-AF33-903BBB347116}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BD2EC46-FA8F-44F3-AF33-903BBB347116}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BD2EC46-FA8F-44F3-AF33-903BBB347116}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1F7E02A-662A-4E8D-A125-1D7D045AC4A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1F7E02A-662A-4E8D-A125-1D7D045AC4A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1F7E02A-662A-4E8D-A125-1D7D045AC4A9}.Release|Any CPU.ActiveCfg = Release|Any CPU

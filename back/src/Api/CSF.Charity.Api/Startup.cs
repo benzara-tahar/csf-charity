@@ -27,23 +27,30 @@ namespace CSF.Charity.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplication();
+
             services.AddInfrastructure(Configuration);
 
             services.AddSwaggerExtension();
-            services.AddControllers();
+            
             services.AddApiVersioningExtension();
+            services.AddCors();
             
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
             services.AddHttpContextAccessor();
 
-            services.AddHealthChecks();
+            //services.AddHealthChecks();
                 //.AddDbContextCheck<ApplicationDbContext>();
 
-            services.AddControllersWithViews(options =>
+            services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>())
-                    .AddFluentValidation();
+                    .AddFluentValidation(fv =>
+                    {
+                        fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                        fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+                        fv.ImplicitlyValidateChildProperties = true;
+                    });
 
 
             // Customise default API behaviour
@@ -60,6 +67,9 @@ namespace CSF.Charity.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseSwaggerExtension();
+            app.UseRouting();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,29 +79,20 @@ namespace CSF.Charity.Api
             {
                 //app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //app.UseHsts();
             }
 
-            app.UseHealthChecks("/health");
+            //app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                //
-            }
-            app.UseSwaggerExtension();
-
-            app.UseRouting();
+            
+            
+            
 
             app.UseAuthentication();
-            //app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
    

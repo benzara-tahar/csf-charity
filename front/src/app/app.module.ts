@@ -11,7 +11,6 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
-import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { ComponentsModule } from './components/components.module';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ComponentsModule,
     NgbModule,
     RouterModule,
     AppRoutingModule

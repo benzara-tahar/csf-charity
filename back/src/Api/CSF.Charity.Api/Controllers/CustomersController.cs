@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using AutoMapper;
+﻿using AutoMapper;
 using CSF.Charity.Application.Customers.Commands.Create;
 using CSF.Charity.Application.Customers.Commands.Delete;
 using CSF.Charity.Application.Customers.Commands.Update;
@@ -10,7 +9,6 @@ using CSF.Charity.Application.TodoLists.Queries.GetTodos;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using CSF.Charity.Application.Services;
 
 namespace CSF.Charity.Api.Controllers

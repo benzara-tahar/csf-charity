@@ -12,12 +12,12 @@ namespace CSF.Charity.Application.Common.Behaviours
         private readonly Stopwatch _timer;
         private readonly ILogger<TRequest> _logger;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IIdentityService _identityService;
+        private readonly IAccountService _identityService;
 
         public PerformanceBehaviour(
             ILogger<TRequest> logger, 
             ICurrentUserService currentUserService,
-            IIdentityService identityService)
+            IAccountService identityService)
         {
             _timer = new Stopwatch();
 

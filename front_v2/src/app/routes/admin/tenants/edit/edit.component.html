@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <div class="modal-title">{{ (mode == 'edit' ? 'tenants.edit-tenant' : 'tenants.new-tenant') | translate }}</div>
+</div>
+<!-- <nz-spin *ngIf="!i" class="modal-spin"></nz-spin> -->
+<form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form" nzLayout="vertical">
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'tenants.tenant-name' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large">
+        <input nz-input formControlName="name" [placeholder]="'tenants.tenant-name' | translate" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-label>
+      <h4>{{ 'tenants.tenant-iot-providers' | translate }}</h4>
+    </nz-form-label>
+    <nz-form-control [nzErrorTip]="'validation.required' | translate">
+      <nz-input-group nzSize="large">
+        <nz-select
+          nzMode="multiple"
+          [nzPlaceHolder]="'tenants.tenant-iot-providers' | translate"
+          formControlName="iotProviders"
+          nzSize="large"
+          [compareWith]="compareObjects"
+        >
+          <nz-option *ngFor="let IoTProvider of supportedIoTProviders" [nzLabel]="IoTProvider.name" [nzValue]="IoTProvider"> </nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">{{ 'common.close' | translate }}</button>
+  <button nz-button type="submit" nzType="primary" (click)="submit()" [nzLoading]="http.loading">
+    {{ (mode == 'edit' ? 'common.edit' : 'common.create') | translate }}
+  </button>
+</div>
